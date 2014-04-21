@@ -1,0 +1,42 @@
+extends display_layout
+
+block body_block
+    div(class="navbar navbar-inverse navbar-fixed-top" role="navigation")
+        div(class="container")
+            div(class="navbar-header")
+                button(type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse")
+                    span(class="sr-only") 네비바 전환
+                    span(class="icon-bar")
+                    span(class="icon-bar")
+                a(class="navbar-brand") 교수님 확인 시스템 v0.2
+            div(class="collapse navbar-collapse")
+                ul(class="nav navbar-nav")
+                    li
+                        a(href="/v1/display") 자리 확인
+                    li(class="active")
+                        a(href="/v1/displayStats" id="stats") 기록 확인
+    div(class="container")
+        div(class="main-info")
+            table.table.table-condensed
+                thead
+                    tr.active
+                        th #
+                        th 변경 시간
+                        th 상태
+                tbody
+                    - each row, i in row_datas
+                        - if (-1 == row.state)
+                            tr.danger
+                                th #{i+1}
+                                th= "확인 안됨"
+                                th= "확인 안됨"
+                        - else if (row.state)
+                            tr.success
+                                th #{i+1}
+                                th= row.time
+                                th= "있음"
+                        - else
+                            tr
+                                th #{i+1}
+                                th= row.time
+                                th= "없음"

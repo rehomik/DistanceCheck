@@ -1,0 +1,25 @@
+extends display_layout
+
+block body_block
+    div(class="navbar navbar-inverse navbar-fixed-top" role="navigation")
+        div(class="container")
+            div(class="navbar-header")
+                button(type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse")
+                    span(class="sr-only") 네비바 전환
+                    span(class="icon-bar")
+                    span(class="icon-bar")
+                a(class="navbar-brand") 교수님 확인 시스템 v0.2
+            div(class="collapse navbar-collapse")
+                ul(class="nav navbar-nav")
+                    li(class="active")
+                        a(href="/v1/display") 자리 확인
+                    li
+                        a(href="/v1/displayStats" id="stats") 기록 확인
+    div(class="container")
+        div(class="main-info")
+            p 교수님은 자리에
+            h1#statestring= state_string
+            p= state_time
+    div(id="footer")
+        div(class="container")
+            p(class="text-muted") 센서의 정확도로 인하여 정보가 맞지 않을 수 있어요.
